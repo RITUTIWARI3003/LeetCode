@@ -23,7 +23,9 @@ class Solution {
                 n--;
         }
         }
-        return (n==0) ?true:false;
+        //return (n==0) ?true:false; ---> change to 
+        return (n<=0) true:false 
+        
         
     }
 }
