@@ -1,0 +1,18 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+        int buy = 0 , sell = 1 ;
+        int diff = 0;
+        while(buy<prices.length){
+        for(sell = buy+1;sell<prices.length;sell++){
+            
+            int diffValue = prices[sell] - prices[buy];
+            diff = Math.max(diffValue,diff);
+        }
+        buy++;
+       
+    }
+         return diff;
+    }
+}
+
+//Time limit Exceed
