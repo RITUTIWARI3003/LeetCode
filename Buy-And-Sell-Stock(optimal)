@@ -1,0 +1,32 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+        int buy = prices[0];
+        int ans = 0;
+        if(prices.length==0) return ans;
+        for(int i = 1;i<prices.length;i++){
+            if(prices[i]>buy){
+                if(ans<prices[i] - buy){
+                    ans = prices[i]-buy;
+                }
+            }
+            else{
+                buy = prices[i];
+            }
+            
+        }
+        return ans;
+    }
+}
+
+
+=============================================ALTERNATE METHOD==============================================
+class Solution {
+    public int maxProfit(int[] prices) {
+        int buy=Integer.MAX_VALUE,sell=0;
+        for(int i=0;i<prices.length;i++){
+            buy=Math.min(buy,prices[i]);
+            sell=Math.max(sell,prices[i]-buy);
+        }
+       return sell;
+    }
+}
