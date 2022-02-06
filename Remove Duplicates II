@@ -1,11 +1,12 @@
 class Solution {
     public int removeDuplicates(int[] nums) {
+        //definetly two duplicates available
         int i = 2;
-        for(int j =2;j<nums.length;j++){
-            if(nums[j]!=nums[i-2]){
-                nums[i++] = nums[j];
+        for(int j =2;j<nums.length;j++){ //start to check for third or more duplicates
+            if(nums[j]!=nums[i-2]){ //check if current pointer j is the same or not same as i-2th                                             //element
+                nums[i++] = nums[j]; //if not same then add nums[j] in nums[i] otherwise keep moving
             }
         }
-        return i;
+        return i; //returning no.of total elements present in an array after removing duplicates
     }
 }
