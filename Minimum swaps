@@ -1,0 +1,59 @@
+/*Your Task:
+You do not need to read input or print anything. Your task is to complete the function minSwaps() which takes the nums as input parameter and returns an integer denoting the minimum number of swaps required to sort the array. If the array is already sorted, return 0. 
+
+
+Expected Time Complexity: O(nlogn)
+Expected Auxiliary Space: O(n) */
+
+// { Driver Code Starts
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class GFG
+{
+    public static void main(String[] args) throws IOException
+    {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int T = Integer.parseInt(br.readLine().trim());
+        while(T-->0)
+        {
+            int n = Integer.parseInt(br.readLine().trim());
+            int[] nums = new int[n];
+            String[] S = br.readLine().trim().split(" ");
+            for(int i = 0; i < n; i++){
+                nums[i] = Integer.parseInt(S[i]);
+            }
+            Solution obj = new Solution();
+            int ans = obj.minSwaps(nums);
+            System.out.println(ans);
+       }
+    }
+}// } Driver Code Ends
+
+
+
+
+class Solution
+{
+    //Function to find the minimum number of swaps required to sort the array.
+    public int minSwaps(int nums[])
+    {
+        int n = nums.length;
+        int arr[] = nums.clone(); //clone the array
+        Arrays.sort(arr); //sort the cloned array
+        int ans = 0; // counter to check min swaps
+        Map<Integer,Integer> map = new HashMap<>(); // to store the element with its index
+        for(int i =0;i<n;i++)
+        map.put(arr[i],i);    //  storing the element with its index
+        for(int i =0;i<n;i++){
+            while(map.get(nums[i])!=i){ //checking if the index is same in sorted and orginal array if same don't do anything if not 
+             ans++;                      // then increment swap
+             int temp = nums[i];        //  swap that element in original array
+             nums[i] = nums[map.get(temp)];
+             nums[map.get(temp)] = temp;
+            }
+        }
+        return ans;  //return the counter which represents the original array
+    }
+}
+
