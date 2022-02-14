@@ -1,0 +1,52 @@
+// { Driver Code Starts
+// Initial Template for Java
+
+import java.io.*;
+import java.util.*;
+
+class GFG {
+    // Driver code
+    public static void main(String[] args) throws Exception {
+        BufferedReader br =
+            new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine().trim());
+        while (t-- > 0) {
+            int n = Integer.parseInt(br.readLine().trim());
+            String[] str = br.readLine().split(" ");
+
+            int[] a = new int[n];
+            for (int i = 0; i < n; i++) {
+                a[i] = Integer.parseInt(str[i]);
+            }
+
+            int[] ans = new Solve().findTwoElement(a, n);
+            System.out.println(ans[0] + " " + ans[1]);
+        }
+    }
+}// } Driver Code Ends
+
+
+// User function Template for Java
+
+class Solve {
+    
+       int[] findTwoElement(int arr[], int n) {
+        int num1=0, num2=0;
+        int[] temp = new int[n+1]; //n+1 because it contains duplicate also
+        int[] ans = new int[2]; //to retun missing and repeating number
+        for(int i=0; i<n; i++){
+            temp[arr[i]]++;  // temps all element is initially zero but if array at i ,have some value 
+        }                    //increment that position in temp array by 1
+        for(int i=1; i<=n; i++){
+            if(temp[i]==0){
+                num1=i;  // if array doesn't contain that value means temp at that pos is zero
+            }
+            if(temp[i]==2)
+                num2=i;  //if duplicates are present temp at that position will be 2
+        }
+        ans[0]=num2;
+        ans[1]=num1;
+        return ans;
+        
+    }
+    }
