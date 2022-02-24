@@ -25,19 +25,19 @@ class GFG{
 
 class Solution{
     static List<Integer> primeDivision(int N){
-        List<Integer> ans = new ArrayList<>();
-        for(int i =2;i<=N/2;i++){
-            if(check(i) && check(N-i)){
-                ans.add(i);
-                ans.add(N-i);
+        List<Integer> ans = new ArrayList<>(); // List to store prime numbers
+        for(int i =2;i<=N/2;i++){ //reaching till half we can get our primes
+            if(check(i) && check(N-i)){  //first prime from beggining and last prime from end 
+                ans.add(i);  //adding in list
+                ans.add(N-i); 
                 return ans;
             }
         }
-        return ans;
+        return ans;//return the value
     }
     
     
-    static boolean check(int n){
+    static boolean check(int n){ // checking for prime
         for(int i =2;i<=Math.sqrt(n);i++){
             if(n%i==0) return false;
         }
