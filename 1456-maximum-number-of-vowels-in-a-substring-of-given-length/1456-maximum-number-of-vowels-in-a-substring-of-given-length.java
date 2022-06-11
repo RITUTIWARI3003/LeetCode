@@ -7,17 +7,17 @@ class Solution {
             }
             
         }
+       
         int ans = 0;
-        
         for(int j = k ;j<=(s.length()-1);j++){
-            ans = Math.max(count,ans);
-            if(s.charAt(j-k)=='a' || s.charAt(j-k)=='e' || s.charAt(j-k)=='i' ||s.charAt(j-k)=='o'||s.charAt(j-k)=='u') count--;
-            if(s.charAt(j)=='a' || s.charAt(j)=='e' || s.charAt(j)=='i' ||s.charAt(j)=='o'||s.charAt(j)=='u') count++;
             
-        }
-        ans = Math.max(count,ans);
-        
+            ans   = Math.max(ans,count);
+            
+           if(s.charAt(j-k)=='a' ||s.charAt(j-k)=='e' || s.charAt(j-k)=='i' || s.charAt(j-k)=='o' || s.charAt(j-k)=='u') count--;
+            if(s.charAt(j)=='a' ||s.charAt(j)=='e' || s.charAt(j)=='i' || s.charAt(j)=='o' || s.charAt(j)=='u') count++;}
+        ans   = Math.max(ans,count);
         
         return ans;
+          
     }
 }
