@@ -1,45 +1,35 @@
 class Solution {
-  
-    public static void part(char[] res,int l,int r,ArrayList<String> ans,int i,int n)
-
-    {
-        if(i == 2*n)  //if opening brace and closing brace is equal to 2*n 
-                     // i.e, l+r = 2*n
-
-        {
-            ans.add(new String(res));
+    
+    void parMeter(int n,int l,int r,int i,String s,List<String> le){
+        //3,0,0,0,"",[""]
+        if(i==2*n){
+            le.add(s);
             return;
         }
-        if(l == r)
-        {
-            res[i] = '('; // always add opening brace
-            part(res,l+1,r,ans,i+1,n); // increase opening brace by 1
+        if(l==r){
+           // s=s+"(";//"("
+            parMeter(n,l+1,r,i+1,s+"(",le);//3,1,0,1,"()",[]
         }
-        else if(l > r) // if opening no. of brace greater than closing there are 
-                       // two cases
-        {
-            if( l == n) // case 1 : if l== n opening braces got exhausted 
-                         // then add remaining closing brace 
-            {
-                res[i] = ')';
-                part(res,l,r+1,ans,i+1,n); //increrase r by 1
+        else if(l>r){ 
+            if(l==n){
+            //s=s+")";
+            parMeter(n,l,r+1,i+1,s+")",le); //(3,3,1,4,(((),3,3,2,5 ((()),3,3,3,6,((()))
             }
-            else // if opening brace is not yet over then
-            {
-                res[i] = '('; // then 2 cases --> i) add opening 
-                part(res,l+1,r,ans,i+1,n);
-                res[i] = ')';  //and then add --> ii) add closing
-                part(res,l,r+1,ans,i+1,n);
-            }
+        
+        else {
+           // s=s+"(";
+            parMeter(n,l+1,r,i+1,s+"(",le);//3,2,0,2,"((" ,3,3,0,3 , "((("
+          //  s=s+")";
+            parMeter(n,l,r+1,i+1,s+")",le);//3,1,1,3,(()
+        }
         }
     }
-    public static List<String> generateParenthesis(int n) {
-        ArrayList<String> ans = new ArrayList<>();
-        int i =0;
-        int l =0;
-        int r = 0;
-        char[] res = new char[2*n];
-        part(res,l,r,ans,i,n);
-        return ans;
+    
+    public List<String> generateParenthesis(int n) {
+        String s = "";
+        List<String> le = new ArrayList();
+        int l=0,r=0,i=0;
+        parMeter(n,l,r,i,s,le);//3,0,0,0,"",[""]
+        return le;
     }
 }
