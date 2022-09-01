@@ -6,7 +6,7 @@ class Solution {
         Arrays.sort(nums);
         
         for(int i = 0 ;i<n ;){
-            if(k==2) break;
+           // if(k==2) break;
             if(i!=(n-1) && nums[i+1] == nums[i]) i = i+2;
             else {
                 ans[k] = nums[i];
