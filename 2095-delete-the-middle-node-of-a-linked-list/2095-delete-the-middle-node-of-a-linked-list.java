@@ -16,14 +16,14 @@ class Solution {
             c++;
             temp = temp.next;
         }
-        if(c == 1) return head.next;
+        if(c==1) return head.next;
         temp = head;
-        int cnt = 0;
-        while(cnt<(c/2)-1){
-        temp = temp.next;
-            cnt++;
+        for(int i = 0 ;i< (c/2)-1 ;i++){
+            temp = temp.next;
         }
+        
         temp.next = temp.next.next;
+       // head = temp;
         
         return head;
     }
