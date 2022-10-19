@@ -19,10 +19,10 @@ class Solution {
         temp = head;
         
         while(temp != null){
-            if(s.pop() != temp.val)
+            if(s.peek() != temp.val)
                return false;
-           
-                temp = temp.next;
+           else{ s.pop();
+                temp = temp.next;}
             
         }
         return true;
