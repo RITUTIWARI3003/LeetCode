@@ -44,13 +44,15 @@ class Solution {
             return h;
         
     }
+    public ListNode mergek(ListNode[] l,int i,int j){
+        if(i==j) return l[i];
+        int mid = (i+j)/2;
+        ListNode h1 = mergek(l,i,mid);
+        ListNode h2 = mergek(l,mid+1,j);
+        return merge(h1,h2);
+    }
     public ListNode mergeKLists(ListNode[] lists) {
         if(lists.length == 0) return null;
-        ListNode res = lists[0];
-        
-        for(int i = 1;i<lists.length;i++){
-            res = merge(res,lists[i]);
-        }
-     return res;   
+        return mergek(lists,0,lists.length-1);
     }
 }
