@@ -14,19 +14,39 @@
  * }
  */
 class Solution {
-    boolean ans = true;
-    public int getHt(TreeNode root){
-        if(root==null) return 0;
-        int lh = getHt(root.left);
-        int rh = getHt(root.right);
+
+    public Pair getHt(TreeNode root){
+        if(root==null) return new Pair(true,0);
+        Pair lh = getHt(root.left);
+        Pair rh = getHt(root.right);
         
-        if(Math.abs(lh-rh)>1) ans = false;
+        boolean f=lh.f && rh.f &&( Math.abs(lh.y-rh.y)<1 || Math.abs(lh.y-rh.y)==1);
         
-        return 1+Math.max(lh,rh);
+        int h = 1+Math.max(lh.y,rh.y);
+        
+        return new Pair(f,h);
     }
     public boolean isBalanced(TreeNode root) {
         
-        getHt(root);
-        return ans;
+       Pair p =  getHt(root);
+        return p.f;
     }
 }
+
+   class Pair
+  {
+
+    boolean f;
+
+    int y;
+
+    public Pair (boolean f, int y)
+    {
+
+      this.f = f;
+
+      this.y = y;
+
+    }
+
+  }
