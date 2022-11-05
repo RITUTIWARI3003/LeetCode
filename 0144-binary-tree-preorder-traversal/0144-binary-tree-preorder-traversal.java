@@ -14,11 +14,12 @@
  * }
  */
 class Solution {
-          List<Integer> ans = new ArrayList<>();
+         
     
         
     
     public List<Integer> preorderTraversal(TreeNode root) {
+         List<Integer> ans = new ArrayList<>();
    Stack<TreeNode> stk = new Stack<>();
         stk.push(root);
        while(!stk.empty() && root != null){
