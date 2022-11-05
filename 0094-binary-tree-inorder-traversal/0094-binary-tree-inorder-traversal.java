@@ -13,18 +13,38 @@
  *     }
  * }
  */
-class Solution {
-    List<Integer> ans = new ArrayList<>();
-    public void traverse(TreeNode root){
-        if(root == null) return ;
-        
-        
-        inorderTraversal(root.left);
-        ans.add(root.val);
-        inorderTraversal(root.right);
+
+
+class Pair{
+    TreeNode n;
+    int f;
+    public Pair(TreeNode n , int f){
+        this.n = n;
+        this.f = f;
     }
+}
+class Solution {
+         
     public List<Integer> inorderTraversal(TreeNode root) {
-        traverse(root);
+         List<Integer> ans = new ArrayList<>();
+   Stack<Pair> stk = new Stack<>();
+        stk.push(new Pair(root,0));
+       while(!stk.empty() && root != null){
+        Pair p = stk.pop();
+      if(p.f == 1)ans.add(p.n.val);
+        else{
+            if(p.n.right != null){
+            stk.push(new Pair(p.n.right,0));
+        }
+            stk.push(new Pair(p.n,1));
+        if(p.n.left != null){
+            stk.push(new Pair(p.n.left,0));
+        }
+       }
+       }
+        
+        
         return ans;
     }
+    
 }
