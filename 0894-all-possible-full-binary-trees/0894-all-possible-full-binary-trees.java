@@ -48,11 +48,9 @@ class Solution {
 
                 for(TreeNode r : right){
 
-                    TreeNode root = new TreeNode(0);
+                    TreeNode root = new TreeNode(0,l,r);
 
-                    root.left = l;
-
-                    root.right = r;
+                    
 
                     ans.add(root);
 
